@@ -3,6 +3,8 @@
 #include<conio.h>
 // #include<bits/stdc++.h>
 #include<windows.h>
+#include<sstream>
+#include <string>
 
 using namespace std;
 
@@ -111,6 +113,97 @@ bool close = false; // so that item gets added until user wants to add
     }
 }
 
+void printBill (Bill b)
+{
+    system("cls");
+    int count = 0;
+    bool close = false;
+    while(!close)
+    {
+        int choice;
+        cout<< "\t1. Print Bill"<<endl;
+        cout<<"\t2. Close Session" << endl;
+        cout<<"Enter Choice: "<< endl;
+        cin>>choice;
+
+        if(choice == 1)
+        {
+          string item;
+          int quant;
+          cout<<"\tEnter Item: ";
+          cin>>item;
+          cout <<"\tEnter Quant: ";
+          cin>>quant;   
+        
+          ifstream in("bill.txt"); // To read the data from the file
+          ofstream out("billprint.txt"); // To print the bill in another file
+
+          string line;
+          bool found = false;
+
+          while(getline(in, line))
+          {
+            stringstream ss;
+            ss<<line;
+            string itemName;
+            int rate;
+            int quantity;
+            char delimiter; // to ignore extra tabs or spaces
+            ss>>itemName>>delimiter>>rate>>delimiter>>quantity;
+
+            if(item == itemName)
+            {
+                found = true;            
+            // }
+            
+
+            if(quant == quantity)
+            {
+                //if item found
+                cout<<"\tItem Found"<<endl;
+                Sleep(3000);
+                int amount = rate * quant;
+                cout << "\t Item: | Rate | Quantity | Amount |" << endl;
+                cout << "\t" << itemName << " | " << rate << " | " << quant << " | " << amount << " |" << endl;
+                // out << "\t Item: | Rate | Quantity | Amount |" << endl;
+
+                int newQuantity = quantity - quant;
+                quantity = newQuantity;
+                count+=amount;
+                out << "\t" << itemName << " | " << rate << " | " << quant << " | " << amount << " |" << endl;
+            }
+
+               
+
+                else
+                {
+                    // for quantity < required
+                    cout << "\t Sorry! Required Quantity not available" << endl;
+                    cout << "\t Available Quantity: " << quantity << endl;
+                    Sleep(3000);
+                }
+            }
+            
+            else
+                {
+                    //if item not found
+                    out<<line<<endl;
+                }
+
+            }
+
+            if (!found)
+            {
+                cout << "\tItem Not Found" << endl;
+                Sleep(3000);
+            }
+            out.close();
+            in.close();   
+        }
+        //50 min
+    }
+}
+
 int main()
 {
     Bill b;
@@ -133,7 +226,14 @@ int main()
 
         if(val == 1)
         {
+            system("cls");
             addItem(b);
+            Sleep(2000);
+        }
+
+        else if(val == 2)
+        {
+
         }
     }
 }
