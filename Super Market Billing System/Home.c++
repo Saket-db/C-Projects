@@ -113,7 +113,7 @@ bool close = false; // so that item gets added until user wants to add
     }
 }
 
-void printBill (Bill b)
+void printBill ()
 {
     system("cls");
     int count = 0;
@@ -170,7 +170,7 @@ void printBill (Bill b)
                 int newQuantity = quantity - quant;
                 quantity = newQuantity;
                 count+=amount;
-                out << "\t" << itemName << " | " << rate << " | " << quant << " | " << amount << " |" << endl;
+                out << "\t" << itemName << " | " << rate << " | " << quant << " | " << amount << " |" << endl << endl;
             }
 
                
@@ -187,7 +187,7 @@ void printBill (Bill b)
             else
                 {
                     //if item not found
-                    out<<line<<endl;
+                    out<<line<<endl; // Actual values being saved
                 }
 
             }
@@ -199,9 +199,25 @@ void printBill (Bill b)
             }
             out.close();
             in.close();   
+
+            remove("bill.txt");
+            rename("billprint.txt", "bill.txt");
         }
-        //50 min
+
+        else if(choice == 2)
+        {
+            close = true;
+            cout<<"\tCalculating Bill"<<endl;
+        }
+        Sleep(3000);
     }
+    system("cls");
+
+    cout<<endl;
+    cout<<"\t Total Bill ----------------------" << count<<endl<<endl;
+
+    cout<<"------Thanks for shopping with us-----"<<endl;
+    Sleep(3000);    
 }
 
 int main()
@@ -233,7 +249,16 @@ int main()
 
         else if(val == 2)
         {
+            printBill();
+        }
 
+        else if(val==3)
+        {
+            system("cls");
+            exit = true;
+
+            cout<<"\tSee you soon"<<endl;
+            Sleep(3000);
         }
     }
 }
