@@ -66,6 +66,7 @@ bool close = false; // so that item gets added until user wants to add
 
         if(choice == 1)
         {
+            system("cls");
             string item;
             int price, quant;
 
@@ -79,7 +80,33 @@ bool close = false; // so that item gets added until user wants to add
             cin>>quant;
             b.setQuant(quant);
 
-            // 18 Mins
+            ofstream out("bill.txt", ios::app); // Ofstream is used to save the user provided input in a file and ios::app is used to append the data in the file in such a manner that the data is added at the end of the file and not overwrite the previous data
+            if(!out)
+            {
+                cout<<"\tError Can't be opened"<<endl;
+                return;
+            }
+            else
+            {
+                out<<b.getItem()<<"\t"<<b.getPrice()<<"\t"<<b.getQuant()<<endl<<endl;
+            }
+            out.close();
+            cout << "\t Item Added Successfully";
+
+            Sleep(3000); // to hold the screen for 3 seconds
+        }
+
+        else if(choice == 2)
+        {
+            system("cls");
+            close = true;
+            cout << "\tBack to Main Menu" << endl;
+            Sleep(3000);
+        }
+        else
+        {
+            cout<<"\tInvalid Choice"<<endl;
+            Sleep(3000);
         }
     }
 }
@@ -95,12 +122,18 @@ int main()
     {
         system("cls"); // to clear the screen
         int val;
-        cout<<"\n\t\t Super Market Billing System";
+        cout<<"\n\t\t Super Market Billing System" <<endl;
         cout<<"\t*********************************"<<endl;
         cout<<"\n1. Add Item"<<endl;
         cout<<"\n2. Print Bill"<<endl;
         cout<<"\n3. Exit"<<endl;
         cout<<"\nEnter your choice: ";
         cin>>val; 
+
+
+        if(val == 1)
+        {
+            addItem(b);
+        }
     }
 }
