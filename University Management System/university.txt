@@ -3,7 +3,11 @@
 	Department:SCOPE
 	Age:21
 	Semester:7
-	Registration No:22BIT0092
+	Registration No	Name: Vyas
+	Department: SCORE
+	Age: 23
+	Semester: 7
+
 	Name:Karan
 	Department:SCORE
 	Age:22
