@@ -1,0 +1,20 @@
+	Registration No:22BCE2180
+	Name:Saket
+	Department:SCOPE
+	Age:21
+	Semester:7
+	Registration No:22BIT0092
+	Name:Karan
+	Department:SCORE
+	Age:22
+	Semester:7
+	Registration No:22BBS0079
+	Name:Riya
+	Department:SCOPE(BBS)
+	Age:21
+	Semester:7
+	Registration No:Fiffy
+	Name:23BCE2906
+	Department:SCOPE
+	Age:21
+	Semester:5
